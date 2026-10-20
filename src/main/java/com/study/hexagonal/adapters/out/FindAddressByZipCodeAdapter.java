@@ -1,7 +1,7 @@
 package com.study.hexagonal.adapters.out;
 
 import com.study.hexagonal.adapters.out.client.FindAddressByZipCodeClient;
-import com.study.hexagonal.adapters.mapper.AddressMapper;
+import com.study.hexagonal.adapters.in.controller.mapper.AddressMapper;
 import com.study.hexagonal.application.core.domain.Address;
 import com.study.hexagonal.application.ports.out.FindAddressByZipCodeOutputPort;
 import org.springframework.beans.factory.annotation.Autowired;

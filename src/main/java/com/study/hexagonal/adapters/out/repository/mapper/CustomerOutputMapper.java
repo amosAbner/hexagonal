@@ -5,7 +5,9 @@ import com.study.hexagonal.application.core.domain.Customer;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface CustomerMapper {
+public interface CustomerOutputMapper {
 
     CustomerEntity toEntity(Customer customer);
+
+    Customer toDomain(CustomerEntity customerEntity);
 }

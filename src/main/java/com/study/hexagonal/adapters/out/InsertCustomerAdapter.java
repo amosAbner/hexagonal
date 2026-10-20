@@ -1,6 +1,6 @@
 package com.study.hexagonal.adapters.out;
 
-import com.study.hexagonal.adapters.out.repository.mapper.CustomerMapper;
+import com.study.hexagonal.adapters.out.repository.mapper.CustomerOutputMapper;
 import com.study.hexagonal.adapters.out.repository.CustomerRepository;
 import com.study.hexagonal.application.core.domain.Customer;
 import com.study.hexagonal.application.ports.out.InsertCustomerOutputPort;
@@ -12,11 +12,11 @@ public class InsertCustomerAdapter implements InsertCustomerOutputPort {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private CustomerMapper customerMapper;
+    private CustomerOutputMapper customerOutputMapper;
 
     @Override
     public void insert(Customer customer) {
-        var customerEntity = customerMapper.toEntity(customer);
+        var customerEntity = customerOutputMapper.toEntity(customer);
         customerRepository.save(customerEntity);
     }
 }
