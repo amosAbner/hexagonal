@@ -4,5 +4,5 @@ import com.study.hexagonal.application.core.domain.Customer;
 
 public interface UpdateCustomerOutputPort {
 
-    void update(Customer customer);
+    void update(Customer customer, String zipCode);
 }

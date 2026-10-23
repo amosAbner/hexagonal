@@ -1,6 +1,6 @@
 package com.study.hexagonal.config.kafka;
 
-import com.study.hexagonal.adapters.in.consumer.CustomerMessage;
+import com.study.hexagonal.adapters.in.consumer.message.CustomerMessage;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<String, CustomerMessage> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
         config.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        config.put(GROUP_ID_CONFIG, "producer-config");
+        config.put(GROUP_ID_CONFIG, "kafka-config");
         config.put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(VALUE_DESERIALIZER_CLASS_CONFIG, JacksonJsonDeserializer.class);
         config.put(AUTO_OFFSET_RESET_CONFIG, "earliest");

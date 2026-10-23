@@ -1,4 +1,4 @@
-package com.study.hexagonal.adapters.in.consumer;
+package com.study.hexagonal.adapters.in.consumer.message;
 
 public record CustomerMessage(
         String id,
