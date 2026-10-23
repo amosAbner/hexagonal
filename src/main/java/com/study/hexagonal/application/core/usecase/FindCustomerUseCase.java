@@ -4,11 +4,11 @@ import com.study.hexagonal.application.core.domain.Customer;
 import com.study.hexagonal.application.ports.in.FindCustomerInputPort;
 import com.study.hexagonal.application.ports.out.FindCustomerByIdOutputPort;
 
-public class FindCustomerByIdUseCase implements FindCustomerInputPort {
+public class FindCustomerUseCase implements FindCustomerInputPort {
 
     private final FindCustomerByIdOutputPort findCustomerByIdOutputPort;
 
-    public FindCustomerByIdUseCase(FindCustomerByIdOutputPort outputPort) {
+    public FindCustomerUseCase(FindCustomerByIdOutputPort outputPort) {
         this.findCustomerByIdOutputPort = outputPort;
     }
 
