@@ -1,6 +1,7 @@
 package com.study.hexagonal.application.core.usecase;
 
 import com.study.hexagonal.application.core.domain.Customer;
+import com.study.hexagonal.application.core.exception.CustomerNotFoundException;
 import com.study.hexagonal.application.ports.in.FindCustomerInputPort;
 import com.study.hexagonal.application.ports.out.FindCustomerByIdOutputPort;
 
@@ -15,6 +16,6 @@ public class FindCustomerUseCase implements FindCustomerInputPort {
     @Override
     public Customer find(String id) {
         return findCustomerByIdOutputPort.find(id)
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+                .orElseThrow(() -> new CustomerNotFoundException(id));
     }
 }

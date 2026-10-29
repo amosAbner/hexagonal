@@ -1,6 +1,7 @@
 package com.study.hexagonal.adapters.in.controller;
 
 import com.study.hexagonal.adapters.in.controller.request.CustomerRequest;
+import com.study.hexagonal.adapters.in.controller.response.ApiErrorResponse;
 import com.study.hexagonal.adapters.in.controller.response.CustomerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,8 +24,12 @@ public interface CustomerSwagger {
             @ApiResponse(responseCode = "201", description = "Cliente cadastrado",
                     headers = @Header(name = "Location", description = "URL do cliente criado"),
                     content = @Content),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida: nome, CPF e CEP são obrigatórios",
-                    content = @Content)
+            @ApiResponse(responseCode = "400", description = "Requisição inválida ou CEP em formato incorreto",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "404", description = "Endereço não encontrado para o CEP informado",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "500", description = "Erro interno ao cadastrar o cliente",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<Void> insertCustomer(
             @Valid
@@ -36,8 +41,10 @@ public interface CustomerSwagger {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Cliente encontrado",
                     content = @Content(schema = @Schema(implementation = CustomerResponseSchema.class))),
+            @ApiResponse(responseCode = "404", description = "Cliente não encontrado",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno ao buscar o cliente",
-                    content = @Content)
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<CustomerResponse> getCustomerById(
             @Parameter(name = "id", in = ParameterIn.PATH, description = "Identificador do cliente",
@@ -48,10 +55,12 @@ public interface CustomerSwagger {
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Cliente atualizado",
                     content = @Content),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida: nome, CPF e CEP são obrigatórios",
-                    content = @Content),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida ou CEP em formato incorreto",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "404", description = "Cliente ou endereço não encontrado",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno ao atualizar o cliente",
-                    content = @Content)
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<Void> updateCustomer(
             @Parameter(name = "id", in = ParameterIn.PATH, description = "Identificador do cliente",
@@ -66,8 +75,10 @@ public interface CustomerSwagger {
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Cliente excluído",
                     content = @Content),
+            @ApiResponse(responseCode = "404", description = "Cliente não encontrado",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
             @ApiResponse(responseCode = "500", description = "Erro interno ao excluir o cliente",
-                    content = @Content)
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<Void> deleteCustomer(
             @Parameter(name = "id", in = ParameterIn.PATH, description = "Identificador do cliente",
