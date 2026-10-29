@@ -1,4 +1,4 @@
-package com.study.hexagonal.adapters.in.controller.mapper;
+package com.study.hexagonal.adapters.out.client.mapper;
 
 import com.study.hexagonal.adapters.out.client.response.AddressResponse;
 import com.study.hexagonal.application.core.domain.Address;
