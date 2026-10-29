@@ -1,6 +1,7 @@
-package com.study.hexagonal.config;
+package com.study.hexagonal.config.bean;
 
 import com.study.hexagonal.adapters.out.FindAddressByZipCodeAdapter;
+import com.study.hexagonal.adapters.out.SendCpfValidationAdapter;
 import com.study.hexagonal.adapters.out.UpdateCustomerAdapter;
 import com.study.hexagonal.application.core.usecase.FindCustomerUseCase;
 import com.study.hexagonal.application.core.usecase.UpdateCustomerUseCase;
@@ -14,11 +15,13 @@ public class UpdateCustomerConfig {
     public UpdateCustomerUseCase updateCustomerUseCase(
             FindCustomerUseCase findCustomerUseCase,
             FindAddressByZipCodeAdapter findAddressByZipCodeOutputPort,
-            UpdateCustomerAdapter updateCustomerOutputPort
+            UpdateCustomerAdapter updateCustomerOutputPort,
+            SendCpfValidationAdapter sendCpfValidationAdapter
     ){
         return new UpdateCustomerUseCase(
                 findCustomerUseCase,
                 findAddressByZipCodeOutputPort,
-                updateCustomerOutputPort);
+                updateCustomerOutputPort,
+                sendCpfValidationAdapter);
     }
 }

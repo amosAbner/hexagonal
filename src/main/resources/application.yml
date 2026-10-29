@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: hexagonal
+  config:
+    import: "optional:configserver:"
+# DATABASE
+  data:
+    mongodb:
+      database: hexagonal
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: example
+# DOCKER-CONFIG
+  docker:
+    compose:
+      enabled: true
+      file: docker/docker-compose.yml
+      lifecycle-management: start-and-stop
+
+# CLIENT
+client:
+  address:
+    url: https://viacep.com.br/ws
+
+server:
+  port: 8080
+
+logging:
+  pattern:
+    level: "%5p%replace(%X{requestId}){'^(.+)$',' [request:$1]'}"

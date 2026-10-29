@@ -16,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/customers")
-public class CustomerController {
+public class CustomerController implements CustomerSwagger {
 
     @Autowired
     private InsertCustomerInputPort insertCustomerInputPort;

@@ -1,4 +1,4 @@
-package com.study.hexagonal.config;
+package com.study.hexagonal.config.bean;
 
 import com.study.hexagonal.adapters.out.DeleteCustomerAdapter;
 import com.study.hexagonal.application.core.usecase.DeleteCustomerUseCase;
